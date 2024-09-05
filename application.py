@@ -26,7 +26,6 @@ def application(): #programme in a function so it can be run indefinatly
     if restart == "y": #either exits the app or runs the function again
         application()
     elif restart == "n":
-        print(calculations)
         print("Thankyou for using my calculator!")
 
 
