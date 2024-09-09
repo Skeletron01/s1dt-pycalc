@@ -81,6 +81,14 @@ keypad.pack(fill='x')
 
 
 
+#store numbers on press
+def key1():
+    
+
+
+
+
+
 def application():
     opperation = input("What calculation would you like to perform? ")
     value1 = int(input("Enter the first number: "))
