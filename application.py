@@ -1,5 +1,39 @@
 import tkinter as tk #import external module tkinter
 
+
+calculation = ""
+
+
+def calculate():
+    global calulation
+    try:
+        answer = str(eval(calculation))
+        calculation = ""
+        typeInput.insert(1.0, answer)
+
+    except:
+        clearText()
+        textInput.insert(1.0, "Error")
+        pass
+
+
+def insertText(opperation):
+    global calculation
+    calculation +=str(opperation)
+    typeInput.delete(1.0, "end")
+    typeInput.insert(1.0, calculation)
+
+
+def clearText():
+    global calculation
+    calculation = ""
+    typeInput.delete(1.0, "end")
+
+
+
+
+
+
 root = tk.Tk()
 
 
@@ -7,11 +41,11 @@ root.geometry("500x700") #set window size to 500x700px
 
 root.title("calculator-(OAC-P2)")
 
-
+#button for help
 helpButton = tk.Button(root, text="?")
 helpButton.pack(pady=5)
 
-typeInput = tk.Entry(root)
+typeInput = tk.Text(root, height=1, width=16, font=("Arial", 24))
 typeInput.pack(pady=10)
 
 keypad = tk.Frame(root)
@@ -25,7 +59,7 @@ keypad.columnconfigure(5, weight=1)
 
 
 #Numpad keys for 0-9 + 00 & .
-key1 = tk.Button(keypad, text="1")
+key1 = tk.Button(keypad, text="1", command=insertText(1))
 key1.grid(row=4, column=0, sticky=tk.W+tk.E)
 key2 = tk.Button(keypad, text="2")
 key2.grid(row=4, column=1, sticky=tk.W+tk.E)
@@ -78,42 +112,34 @@ keyClear.grid(row=2, column=4, sticky=tk.W+tk.E)
 keypad.pack(fill='x')
 
 
-
-
-
-#store numbers on press
-def key1():
-    
-
-
-
-
-
-def application():
-    opperation = input("What calculation would you like to perform? ")
-    value1 = int(input("Enter the first number: "))
-    value2 = int(input("Enter the second number: "))
-
-    if opperation == "+":
-        answer = value1 + value2
-        print("Answer is " + str(answer))
-    elif opperation == "-":
-        answer = value1 - value2
-        print("Answer is " + str(answer))
-    elif opperation == "*":
-        answer = value1 * value2
-        print("Answer is " + str(answer))
-    elif opperation == "/":
-        answer = value1 / value2
-        print("Answer is " + str(answer))
-    
-
-    restart = input("Would you like to use the calculator again? ")
-
-    if restart == "y":
-        application()
-    elif restart == "n":
-        print("Thankyou for using my calculator!")
-
-
 root.mainloop()
+
+
+
+# def application():
+#     opperation = input("What calculation would you like to perform? ")
+#     value1 = int(input("Enter the first number: "))
+#     value2 = int(input("Enter the second number: "))
+
+#     if opperation == "+":
+#         answer = value1 + value2
+#         print("Answer is " + str(answer))
+#     elif opperation == "-":
+#         answer = value1 - value2
+#         print("Answer is " + str(answer))
+#     elif opperation == "*":
+#         answer = value1 * value2
+#         print("Answer is " + str(answer))
+#     elif opperation == "/":
+#         answer = value1 / value2
+#         print("Answer is " + str(answer))
+    
+
+#     restart = input("Would you like to use the calculator again? ")
+
+#     if restart == "y":
+#         application()
+#     elif restart == "n":
+#         print("Thankyou for using my calculator!")
+
+
