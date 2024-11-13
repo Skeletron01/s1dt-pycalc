@@ -6,26 +6,15 @@ def collectCalculation(): #function to select opperation
     return value1, opperation, value2
 
 def validateOpperation():
-    opperation = collectOpperation() #call collectOpperation function and stores returned value as 'opperation'
-    #Checks for a valid opperation, if opperation is valid, asks for next number
-    if opperation == "+":
-        value2 = int(input("Enter the second number: ")) #ask for the second number
-    elif opperation == "-":
-        value2 = int(input("Enter the second number: ")) #ask for the second number
-    elif opperation == "*":
-        value2 = int(input("Enter the second number: ")) #ask for the second number
-    elif opperation == "/":
-        value2 = int(input("Enter the second number: ")) #ask for the second number
-    elif opperation == "?": #if user provided '?' print tips
-        print("Valid opperations are + (add), - (subtract), * (multiply), / (divide). Type 'H' to view history")
-        opperation = collectOpperation() #rerun collect opperation function to get a valid opperation
-    elif opperation == "H":
-        for item in calculations:
-            print(item)
-    else:  #print message if user provides something that is not valid
-        print("The opperation you selected is not valid. Type ? for help")
-        opperation = collectOpperation() #rerun collect opperation function to get a valid opperation
-    return opperation, value2 #returns the variables to be used in other functions
+    while True:
+        opperation = collectOpperation()
+        if opperation in "+-*/": #checks if the opperation is valid
+            value2 = int(input("Enter the second number: ")) #asks for the second number
+            return opperation, value2
+        elif opperation == "?": #opens the help prompt if the user types '?'
+            print("Valid opperations are + (add), - (subtract), * (multiply), / (divide). Type 'H' to view history")
+        else: # if the opperation selected is not valid
+            print("The opperation you selected is not valid. Type ? for help")
 
 
 def calculate(): #function to collect the calculation from the user
@@ -52,10 +41,10 @@ def calculate(): #function to collect the calculation from the user
     if restart == "y" or "yes": #either exits the app or runs the function again
         menu()
     elif restart == "n" or "no":
-        print("Thank you for using my calculator!")
+        exit()
 
 def collectOpperation():
-    opperation = input("What calculation would you like to perform? Type '?' for help: ") #ask for the opperation
+    opperation = input("What calculation would you like to perform? ") #ask for the opperation
     return opperation
 
 def menu(): #function for the menu of the application
@@ -63,6 +52,7 @@ def menu(): #function for the menu of the application
     print("1: Preform a calculation")
     print("2: View history")
     print("3: Help")
+    print("4: Exit")
     selection = (input("What would you like to do? "))
     if selection == "1":
         calculate()
@@ -75,8 +65,14 @@ def menu(): #function for the menu of the application
         print("Help menu")
         print("You are in the main menu, Select an option by pressing the corresponding number on your keyboard followed by the enter or return key")
         menu()
+    elif selection == "4":
+        exit()
     else:
         print("unknown option")
         menu()
+
+
+def exit():
+    print("Thank you for using my calculator!")
 
 menu() #runs the function for the first time
