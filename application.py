@@ -31,17 +31,27 @@ def calculate(): #function to collect the calculation from the user
         answer = value1 * value2
         print("Answer is " + str(answer)) #multiplication
     elif opperation == "/":
-        answer = value1 / value2
-        print("Answer is " + str(answer)) #division
+        if value1 == 0 or value2 == 0:
+            print("Error: Can not divide by 0") #error handling for division by 0
+        else:
+            answer = value1 / value2
+            print("Answer is " + str(answer)) #division
     
     calculations.append(str(value1) + opperation + str(value2)) #adds calculation to memory
     print('Calculation ' + str(value1) + opperation + str(value2) + ' stored to memory') #states that the calculation was saved to memory
     restart = input("Would you like to use the calculator again? ") #asks if they would like to use it again
 
-    if restart == "y" or "yes": #either exits the app or runs the function again
-        menu()
-    elif restart == "n" or "no":
+    if restart == "y" or  restart == "yes": #either exits the app or runs the function again
+        calculate()
+    elif restart == "n" or restart == "no":
         exit()
+    elif restart == "m" or restart == "menu":
+        menu()
+    elif restart == "?":
+        print("Help menu")
+        print("type 'yes' to run the calculator again")
+        print("type 'no' to exit the application")
+        print("type 'menu' to return to the main menu")
 
 def collectOpperation():
     opperation = input("What calculation would you like to perform? ") #ask for the opperation
@@ -61,15 +71,16 @@ def menu(): #function for the menu of the application
         for item in calculations:
             print(item)
         menu()
-    elif selection == "3":
+    elif selection == "3" or selection == "?":
         print("Help menu")
-        print("You are in the main menu, Select an option by pressing the corresponding number on your keyboard followed by the enter or return key")
+        print("You are in the main menu, Select an option by pressing the corresponding number on your keyboard followed by the enter or return key. If you are ever stuck, you can type '?' for the help prompt")
         menu()
     elif selection == "4":
         exit()
     else:
         print("unknown option")
         menu()
+        
 
 
 def exit():
