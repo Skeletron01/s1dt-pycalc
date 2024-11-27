@@ -1,3 +1,4 @@
+import math
 calculations = [] #create the list to save calculations to memory
 
 def collectCalculation(): #function to select opperation
@@ -8,11 +9,14 @@ def collectCalculation(): #function to select opperation
 def validateOpperation():
     while True:
         opperation = collectOpperation()
-        if opperation in "+-*/": #checks if the opperation is valid
+        if opperation in "+-*/^": #checks if the opperation is valid
             value2 = int(input("Enter the second number: ")) #asks for the second number
             return opperation, value2
+        elif opperation == "sqrt":
+            value2 = 0
+            return opperation, value2
         elif opperation == "?": #opens the help prompt if the user types '?'
-            print("Valid opperations are + (add), - (subtract), * (multiply), / (divide). Type 'H' to view history")
+            print("Valid opperations are + (add), - (subtract), * (multiply), / (divide), sqrt (square root), ^ (exponent)")
         else: # if the opperation selected is not valid
             print("The opperation you selected is not valid. Type ? for help")
 
@@ -26,7 +30,7 @@ def calculate(): #function to collect the calculation from the user
         print("Answer is " + str(answer)) #addition
     elif opperation == "-":
         answer = value1 - value2
-        print("Answer is " + str(answer)) #subtraction
+        print("Answer is " + str(answer)) #subtraction6
     elif opperation == "*":
         answer = value1 * value2
         print("Answer is " + str(answer)) #multiplication
@@ -36,6 +40,10 @@ def calculate(): #function to collect the calculation from the user
         else:
             answer = value1 / value2
             print("Answer is " + str(answer)) #division
+    elif opperation == "sqrt":
+        print("Answer is " + str(math.sqrt(value1)))
+    elif opperation == "^":
+        print("Answer is " + str(value1 ** value2))
     
     calculations.append(str(value1) + opperation + str(value2)) #adds calculation to memory
     print('Calculation ' + str(value1) + opperation + str(value2) + ' stored to memory') #states that the calculation was saved to memory
