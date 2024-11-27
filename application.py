@@ -13,7 +13,7 @@ def validateOpperation():
             value2 = int(input("Enter the second number: ")) #asks for the second number
             return opperation, value2
         elif opperation == "sqrt":
-            value2 = 0
+            value2 = ' '
             return opperation, value2
         elif opperation == "?": #opens the help prompt if the user types '?'
             print("Valid opperations are + (add), - (subtract), * (multiply), / (divide), sqrt (square root), ^ (exponent)")
